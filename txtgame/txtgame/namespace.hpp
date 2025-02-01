@@ -1,4 +1,4 @@
-#ifndef GAME_HPP
+﻿#ifndef GAME_HPP
 #define GAME_HPP
 
 #include <iostream>
@@ -25,20 +25,20 @@ namespace game {
         int delay_ms_;
     };
 
-    void loading(int Time) {
-        const int steps = 200;
-        int steps_count = (Time * 1000) / steps;
-        const char animation[] = { '|', '/', '-', '\\' };
+    void loading(int czas) {
+        const int krok = 200;
+        int ilosc_krokow = (czas * 1000) / krok;
+        const char animacja[] = { '|', '/', '-', '\\' };
         int anim_index = 0;
 
-        std::cout << "Loading: " << std::flush;
-        for (int i = 0; i < steps; i++) {
-            std::cout << "\b" << animation[anim_index] << std::flush;
+        std::cout << "\033[1;31mLadowanie: \033[0m" << std::flush;
+        for (int i = 0; i < ilosc_krokow; i++) {
+            std::cout << "\b" << animacja[anim_index] << std::flush;
             anim_index = (anim_index + 1) % 4;
-            std::this_thread::sleep_for(std::chrono::milliseconds(steps));
+            std::this_thread::sleep_for(std::chrono::milliseconds(krok));
         }
-        std::cout << "\b\033[32mzaladowane\33[0m" << std::endl;
+        std::cout << "\033[1;32m Zaladowane\033[0m" << std::endl;
     }
-} // namespace game
+}
 
 #endif // GAME_HPP
