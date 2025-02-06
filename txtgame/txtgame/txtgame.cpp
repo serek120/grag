@@ -9,6 +9,9 @@ int main()
 
     game::loading(2);
 
+    printer.printWithDelay("Wyberz klase");
+
+    printer.printWithDelay("Czlowiek\nLiso-czlowiek\n\nto tyle bo nie mam pomyslu na reszte");
 
     return 0;
 }
