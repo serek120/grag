@@ -31,13 +31,13 @@ namespace game {
         const char animacja[] = { ' |', ' /', ' -', ' \\' };
         int anim_index = 0;
 
-        std::cout << "\033[1;31mLadowanie: \033[0m" << std::flush;
+        std::cout << "\033[1;31mLoading: \033[0m" << std::flush;
         for (int i = 0; i < ilosc_krokow; i++) {
             std::cout << "\b" << animacja[anim_index] << std::flush;
             anim_index = (anim_index + 1) % 4;
             std::this_thread::sleep_for(std::chrono::milliseconds(krok));
         }
-        std::cout << "\033[1;32m Zaladowane\033[0m" << std::endl;
+        std::cout << "\033[1;32mDone\033[0m" << std::endl;
     }
 
     void cls(int delay) {

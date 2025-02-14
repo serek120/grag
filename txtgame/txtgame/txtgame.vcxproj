@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="booleans.cpp" />
     <ClCompile Include="klasyitd.cpp" />
     <ClCompile Include="txtgame.cpp" />
   </ItemGroup>
