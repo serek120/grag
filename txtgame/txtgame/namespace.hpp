@@ -1,7 +1,7 @@
 ﻿#ifndef GAME_HPP
 #define GAME_HPP
 
-#include <iostream>
+#include <string>
 #include <chrono>
 #include <thread>
 #include <cstdio>
@@ -38,6 +38,20 @@ namespace game {
             std::this_thread::sleep_for(std::chrono::milliseconds(krok));
         }
         std::cout << "\033[1;32m Zaladowane\033[0m" << std::endl;
+    }
+
+    void cls(int delay) {
+        std::this_thread::sleep_for(std::chrono::seconds(delay));
+        system("cls");
+    }
+
+    void cc(char* input) {
+        system(input);
+    }
+
+    void sequence() {
+        game::loading(3);
+        game::cls(2);
     }
 }
 
