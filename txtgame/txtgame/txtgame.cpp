@@ -33,7 +33,7 @@ int static characterdesign() {
         if (strcmp(buffer, "Thiren") == 0) {
             printer.printWithDelay("You chose Thiren");
             g_bisthiren = true;
-            game::sequence(4, 1);
+            game::sequence(4, 400);
             continue;
         } else if (strcmp(buffer, "Human") == 0) {
             printer.printWithDelay("You chose Human");
@@ -61,12 +61,12 @@ int main() {
         buffer[strcspn(buffer, "\n")] = '\0';
 
         if (strcmp(buffer, "Start") == 0) {
-            game::sequence(1, 4);
+            game::sequence(1, 400);
             return characterdesign();
         } else if (strcmp(buffer, "Exit") == 0) {
             break;
         } else if (strcmp(buffer, "ellen joe") == 0) {
-            game::sequence(3, 1);
+            game::sequence(3, 400);
             ShellExecute(0, 0, L"https://i.imgur.com/LlgUaHi.jpeg", 0, 0, SW_SHOW);
             game::DelayedPrinter printer(700);
             printer.printWithDelay("You found an easter egg.");
