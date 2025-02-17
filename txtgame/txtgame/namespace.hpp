@@ -28,7 +28,7 @@ namespace game {
     void loading(int czas) {
         const int krok = 200;
         int ilosc_krokow = (czas * 1000) / krok;
-        const char animacja[] = { ' |', ' /', ' -', ' \\' };
+        const char animacja[] = { '|', '/', '-', '\\' };
         int anim_index = 0;
 
         std::cout << "\033[1;31mLoading: \033[0m" << std::flush;
@@ -49,9 +49,10 @@ namespace game {
         system(input);
     }
 
-    void sequence() {
-        game::loading(3);
-        game::cls(2);
+    void sequence(int time, int time2) {
+        game::cls( time2 );
+        game::loading( time );
+        game::cls( time2 );
     }
 }
 

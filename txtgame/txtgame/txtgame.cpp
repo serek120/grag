@@ -6,16 +6,40 @@
 #include "Windows.h"
 #include <shellapi.h>
 
+
 std::string userinput;
 char buffer[256];
 
-int characterdesign() {
+int static characterdesign() {
     game::DelayedPrinter printer(30);
+    printer.printWithDelay("----Race you choose may unlock or block some dialogues in the game----");
     printer.printWithDelay("there are two main races dominant among humans, you can choose what race you are");
-    printer.printWithDelay("siema");
-
+    printer.printWithDelay("Are you a \033[1;35;47m'Thiren'\033[0m");
+    printer.printWithDelay("\033[1;32;47mor\033[0m");
+    printer.printWithDelay("you are a \033[1;31;47m'Human'\033[0m");
     while (true) {
         printf("> :");
+
+        if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+            printf("Invalid input");
+            continue;
+        } else {
+            printf("Invalid input");
+            continue;
+        }
+
+        buffer[strcspn(buffer, "\n")] = '\0';
+
+        if (strcmp(buffer, "Thiren") == 0) {
+            printer.printWithDelay("You chose Thiren");
+            g_bisthiren = true;
+            game::sequence(4, 1);
+            continue;
+        } else if (strcmp(buffer, "Human") == 0) {
+            printer.printWithDelay("You chose Human");
+            g_bisHuman = true;
+        }
+
     }
 
     return 0x1;
@@ -37,12 +61,16 @@ int main() {
         buffer[strcspn(buffer, "\n")] = '\0';
 
         if (strcmp(buffer, "Start") == 0) {
-            game::sequence();
+            game::sequence(1, 4);
             return characterdesign();
         } else if (strcmp(buffer, "Exit") == 0) {
             break;
         } else if (strcmp(buffer, "ellen joe") == 0) {
-            ShellExecute(0, 0, L"http://www.google.com", 0, 0, SW_SHOW);
+            game::sequence(3, 1);
+            ShellExecute(0, 0, L"https://i.imgur.com/LlgUaHi.jpeg", 0, 0, SW_SHOW);
+            game::DelayedPrinter printer(700);
+            printer.printWithDelay("You found an easter egg.");
+            std::exit(0x000202);
         } else {
             printf("Invalid input. Please type 'Start' or 'Exit'.\n");
         }
