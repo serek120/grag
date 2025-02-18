@@ -7,6 +7,9 @@
 #include <cstdio>
 #include <ctime>
 
+extern bool isThiren;
+extern bool isHuman;
+
 namespace game {
     class DelayedPrinter {
     public:

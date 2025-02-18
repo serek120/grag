@@ -10,6 +10,15 @@
 std::string userinput;
 char buffer[256];
 
+bool isThiren = false;
+bool isHuman = false;
+
+int static characterdesign2() {
+    game::DelayedPrinter printer(500);
+    printer.printWithDelay("siema");
+    return 0x101;
+}
+
 int static characterdesign() {
     game::DelayedPrinter printer(30);
     printer.printWithDelay("----Race you choose may unlock or block some dialogues in the game----");
@@ -20,28 +29,28 @@ int static characterdesign() {
     while (true) {
         printf("> :");
 
-        if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
-            printf("Invalid input");
-            continue;
-        } else {
-            printf("Invalid input");
-            continue;
-        }
-
         buffer[strcspn(buffer, "\n")] = '\0';
 
-        if (strcmp(buffer, "Thiren") == 0) {
-            printer.printWithDelay("You chose Thiren");
-            g_bisthiren = true;
-            game::sequence(4, 400);
+        if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+            printf("Invalid input\n");
             continue;
+        } else if (strcmp(buffer, "Thiren") == 0) {
+            printer.printWithDelay("You chose Thiren");
+            isThiren = true;
+            game::sequence(4, 400);
+            return characterdesign2();
         } else if (strcmp(buffer, "Human") == 0) {
             printer.printWithDelay("You chose Human");
-            g_bisHuman = true;
+            isHuman = true;
+        } else {
+            printf("Invalid input\n");
+            continue;
         }
 
-    }
 
+
+
+    }
     return 0x1;
     
 }
@@ -69,7 +78,7 @@ int main() {
             game::sequence(3, 400);
             ShellExecute(0, 0, L"https://i.imgur.com/LlgUaHi.jpeg", 0, 0, SW_SHOW);
             game::DelayedPrinter printer(700);
-            printer.printWithDelay("You found an easter egg.");
+            printer.printWithDelay("You discovered an easter egg.");
             std::exit(0x000202);
         } else {
             printf("Invalid input. Please type 'Start' or 'Exit'.\n");

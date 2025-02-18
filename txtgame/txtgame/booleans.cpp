@@ -15,7 +15,6 @@ bool static isEmptyOrSpaces(const char* str) {
     return true;
 }
 
-extern bool g_bisthiren = false;
-extern bool g_bisHuman = false;
+
 
 #endif // !BOOLEANS_CPP
