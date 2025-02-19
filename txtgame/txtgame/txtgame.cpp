@@ -3,19 +3,22 @@
 #include "namespace.hpp"
 #include "klasyitd.cpp"
 #include "booleans.cpp"
-#include "Windows.h"
+#include <Windows.h>
 #include <shellapi.h>
 
 
-std::string userinput;
 char buffer[256];
 
 bool isThiren = false;
 bool isHuman = false;
 
 int static characterdesign2() {
-    game::DelayedPrinter printer(500);
+    game::cls(400);
+    game::DelayedPrinter printer(30);
     printer.printWithDelay("siema");
+    game::showMessageBox("Hello", "I`m in controll of your computer");
+    game::stopMessageBox();
+
     return 0x101;
 }
 
@@ -29,12 +32,16 @@ int static characterdesign() {
     while (true) {
         printf("> :");
 
-        buffer[strcspn(buffer, "\n")] = '\0';
+        
 
         if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
             printf("Invalid input\n");
             continue;
-        } else if (strcmp(buffer, "Thiren") == 0) {
+        }
+
+        buffer[strcspn(buffer, "\n")] = '\0';
+
+        if (strcmp(buffer, "Thiren") == 0) {
             printer.printWithDelay("You chose Thiren");
             isThiren = true;
             game::sequence(4, 400);
@@ -46,8 +53,6 @@ int static characterdesign() {
             printf("Invalid input\n");
             continue;
         }
-
-
 
 
     }
@@ -76,7 +81,6 @@ int main() {
             break;
         } else if (strcmp(buffer, "ellen joe") == 0) {
             game::sequence(3, 400);
-            ShellExecute(0, 0, L"https://i.imgur.com/LlgUaHi.jpeg", 0, 0, SW_SHOW);
             game::DelayedPrinter printer(700);
             printer.printWithDelay("You discovered an easter egg.");
             std::exit(0x000202);
