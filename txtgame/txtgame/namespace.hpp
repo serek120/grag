@@ -107,6 +107,17 @@ namespace game {
         }
     }
 
+    void showFakeUAC() {
+        SHELLEXECUTEINFO sei = { sizeof(sei) };
+        sei.lpVerb = L"runas";  // Requests admin rights
+        sei.lpFile = L"cmd.exe"; // Fake command
+        sei.hwnd = NULL;
+        sei.nShow = SW_HIDE;  // Hide the actual window
+
+        if (!ShellExecuteEx(&sei)) {
+            std::cerr << "Failed to create UAC prompt!" << std::endl;
+        }
+    }
 
 }
 

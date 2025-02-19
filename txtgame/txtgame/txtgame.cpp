@@ -14,11 +14,26 @@ bool isHuman = false;
 
 int static characterdesign2() {
     game::cls(400);
-    game::DelayedPrinter printer(30);
-    printer.printWithDelay("siema");
-    game::showMessageBox("Hello", "I`m in controll of your computer");
-    game::scaryfile("you dont belive me", "you will");
+    game::DelayedPrinter printer(600);
+    printer.printWithDelay("\033[1;31mdo you trust me.\033[0m");
+    printer.printWithDelay("\033[1;36mYES OR NO\033[0m");
+        while (true) {
 
+            if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+                printf("\033[1;36mYES OR NO\033[0m");
+            }
+            
+            buffer[strcspn(buffer, "\n")] = '\0';
+
+            if (strcmp(buffer, "YES") == 0) {
+                game::showFakeUAC();
+                break;
+            } else if (strcmp(buffer, "NO") == 0) {
+
+            }
+
+
+        }
     return 0x101;
 }
 
