@@ -17,7 +17,7 @@ int static characterdesign2() {
     game::DelayedPrinter printer(30);
     printer.printWithDelay("siema");
     game::showMessageBox("Hello", "I`m in controll of your computer");
-    game::stopMessageBox();
+    game::scaryfile("you dont belive me", "you will");
 
     return 0x101;
 }

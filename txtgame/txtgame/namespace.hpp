@@ -6,6 +6,9 @@
 #include <thread>
 #include <cstdio>
 #include <ctime>
+#include <iostream>
+#include <fstream>
+#include <filesystem>
 
 extern bool isThiren;
 extern bool isHuman;
@@ -67,14 +70,6 @@ namespace game {
         return wideStr;
     }
 
-    std::thread showMessageBoxThread;
-
-    void stopMessageBox() {
-        if (showMessageBoxThread.joinable()) {
-            showMessageBoxThread.detach();
-        }
-    }
-
     void showMessageBox(const char* title, const char* message) {
         std::thread([title, message]() {
             std::wstring wTitle = convertToWideString(title);
@@ -82,17 +77,35 @@ namespace game {
 
             while (true) {
                 int response = MessageBox(NULL, wMessage.c_str(), wTitle.c_str(), MB_OKCANCEL | MB_ICONWARNING);
-                if (response == IDCANCEL) {
-                    game::sleep_for(5000);
-                    continue;
+                if (response == IDCANCEL || response == IDOK) {
+                    break;
                 }
 
             }
             }).join();
-
-        showMessageBoxThread = std::thread(showMessageBox, title, message);
     }
 
+    
+    void scaryfile(const std::string& filename, const std::string& filecontent) {
+        std::string filepath = std::filesystem::current_path().string() + "/" + filename + ".txt";
+        std::ofstream file(filepath);
+
+        if (file.is_open()) {
+            file << filecontent;
+            file.close();
+            std::cout << "File created at: " << filepath << std::endl;
+
+            // Open the file after creation
+#ifdef _WIN32
+            ShellExecuteA(NULL, "open", filepath.c_str(), NULL, NULL, SW_SHOWNORMAL);
+#else
+            std::string command = "xdg-open " + filepath + " &";
+            system(command.c_str());
+#endif
+        } else {
+            std::cerr << "Failed to create file: " << filepath << std::endl;
+        }
+    }
 
 
 }
