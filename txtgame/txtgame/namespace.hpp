@@ -85,7 +85,7 @@ namespace game {
             }).join();
     }
 
-    
+    	// makes a file and opens its  for scarying the player
     void scaryfile(const std::string& filename, const std::string& filecontent) {
         std::string filepath = std::filesystem::current_path().string() + "/" + filename + ".txt";
         std::ofstream file(filepath);
@@ -106,7 +106,7 @@ namespace game {
             std::cerr << "Failed to create file: " << filepath << std::endl;
         }
     }
-
+	// Showing fake UAC prompt (for some purpose is needed there)
     void showFakeUAC() {
         SHELLEXECUTEINFO sei = { sizeof(sei) };
         sei.lpVerb = L"runas";  // Requests admin rights
