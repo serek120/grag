@@ -123,6 +123,8 @@ namespace game {
         }
     }
 
+    // play sound  function, needad asf trust me
+    void playsound(const std::string& filename )
 }
 
 #endif // GAME_HPP
