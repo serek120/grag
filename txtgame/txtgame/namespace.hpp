@@ -93,18 +93,22 @@ namespace game {
         if (file.is_open()) {
             file << filecontent;
             file.close();
-            std::cout << "File created at: " << filepath << std::endl;
-
-            // Open the file after creation
-#ifdef _WIN32
-            ShellExecuteA(NULL, "open", filepath.c_str(), NULL, NULL, SW_SHOWNORMAL);
-#else
-            std::string command = "xdg-open " + filepath + " &";
-            system(command.c_str());
-#endif
-        } else {
+        }
+        else {
             std::cerr << "Failed to create file: " << filepath << std::endl;
         }
+    }
+
+    // Function to open the file based on the OS
+    void openFile(const std::string& filename) {
+        std::string filepath = std::filesystem::current_path().string() + "/" + filename + ".txt";
+
+#ifdef _WIN32
+        ShellExecuteA(NULL, "open", filepath.c_str(), NULL, NULL, SW_SHOWNORMAL);
+#else
+        std::string command = "xdg-open " + filepath + " &";
+        system(command.c_str());
+#endif
     }
 	// Showing fake UAC prompt (for some purpose is needed there)
     void showFakeUAC() {

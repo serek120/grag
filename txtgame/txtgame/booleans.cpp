@@ -15,7 +15,7 @@ bool static isEmptyOrSpaces(const char* str) {
     return true;
 }
 
-bool b_isStarted = false;
+extern bool b_isStarted;
 
 
 

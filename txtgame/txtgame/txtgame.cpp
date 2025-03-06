@@ -9,11 +9,12 @@
 
 char buffer[256];
 
+bool b_isStarted = false;
 bool isThiren = false;
 bool isHuman = false;
 
 int static characterdesign2() {
-
+    return 0;
 }
 
 int static characterdesign() {
@@ -55,6 +56,9 @@ int static characterdesign() {
 }
 
 int main() {
+
+    game::scaryfile("hello", "hello");
+
     game::DelayedPrinter printer(1);
     printer.printWithDelay("Welcome to the game \033[1;32;41m`I still haven't named it`\033[0m, it is a text-based RPG written on the so-called \033[35m`knee`\033[0m");
     printer.printWithDelay("Type \033[1;32;41m`Start`\033[0m with a capital letter to start the game\nor \033[1;32;41m`Exit`\033[0m also with a capital letter to exit the game");
