@@ -131,11 +131,16 @@ namespace game {
         sf::SoundBuffer buffer;
 
         if (!std::filesystem::exists (filename)) {
-            std::cerr << "Error File " << filename << " not exist" << std::runtime_error::what << std::endl;
-            exit (ERROR);
+            std::cerr << "Error File " << filename << " not exist" << std::endl;
+            exit(ERROR);
         } else if (!buffer.loadFromFile (filename)) {
-
+            std::cerr << "Error while loading " << filename << " exiting" << std::endl;
+            exit(ERROR);
         }
+
+        sf::Sound sound;
+        sound.setBuffer(buffer);
+        sound.play();
     }
 }
 
