@@ -6,10 +6,11 @@
 #include <thread>
 #include <cstdio>
 #include <ctime>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include <fstream>
 #include <filesystem>
-#include <SFML/Audio.hpp>
+
 
 extern bool isThiren;
 extern bool isHuman;
@@ -126,11 +127,15 @@ namespace game {
 
     // play sound  function, needad asf trust me
     void playsound(const std::string& filename) {
-        if (!std::filesystem::exists(filename)) {
-            std::cerr << "Error File " << filename << " not exist" << std::runtime_error::what << std::endl;
-            exit(ERROR);
-        }
         
+        sf::SoundBuffer buffer;
+
+        if (!std::filesystem::exists (filename)) {
+            std::cerr << "Error File " << filename << " not exist" << std::runtime_error::what << std::endl;
+            exit (ERROR);
+        } else if (!buffer.loadFromFile (filename)) {
+
+        }
     }
 }
 
