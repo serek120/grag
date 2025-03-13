@@ -57,8 +57,7 @@ int static characterdesign() {
 
 int main() {
 
-
-    game::scaryfile("hello", "hello");
+    
 
     game::DelayedPrinter printer(1);
     printer.printWithDelay("Welcome to the game \033[1;32;41m`I still haven't named it`\033[0m, it is a text-based RPG written on the so-called \033[35m`knee`\033[0m");

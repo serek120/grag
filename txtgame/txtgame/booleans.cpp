@@ -5,7 +5,7 @@
 #include <cstring>
 #include <cctype>
 
-bool isEmptyOrSpaces(const char* str) {
+bool static isEmptyOrSpaces(const char* str) {
     while (*str) {
         if (!isspace((unsigned char)*str)) {
             return false;

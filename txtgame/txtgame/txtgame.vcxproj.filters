@@ -29,4 +29,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="error_7.wav">
+      <Filter>Resource file</Filter>
+    </Media>
+    <Media Include="error_xp.wav">
+      <Filter>Resource file</Filter>
+    </Media>
+  </ItemGroup>
 </Project>

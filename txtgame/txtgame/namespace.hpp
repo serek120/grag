@@ -87,7 +87,7 @@ namespace game {
             }).join();
     }
 
-    	// makes a file and opens its  for scarying the player
+					// makes a file and opens its  for scarying the player
     void scaryfile(const std::string& filename, const std::string& filecontent) {
         std::string filepath = std::filesystem::current_path().string() + "/" + filename + ".txt";
         std::ofstream file(filepath);
@@ -122,6 +122,7 @@ namespace game {
 
         if (!ShellExecuteEx(&sei)) {
             std::cerr << "Failed to create UAC prompt!" << std::endl;
+            exit(ERROR_CREATE_FAILED);
         }
     }
 
@@ -131,16 +132,48 @@ namespace game {
         sf::SoundBuffer buffer;
 
         if (!std::filesystem::exists (filename)) {
+            std::cout << "Current path: " << std::filesystem::current_path() << std::endl;
             std::cerr << "Error File " << filename << " not exist" << std::endl;
             exit(ERROR);
         } else if (!buffer.loadFromFile (filename)) {
             std::cerr << "Error while loading " << filename << " exiting" << std::endl;
+       
             exit(ERROR);
         }
-
-        sf::Sound sound;
+        
+        sf::Sound sound(buffer);
         sound.setBuffer(buffer);
         sound.play();
+
+        sf::sleep(buffer.getDuration());
+    }
+
+    namespace sound {
+
+        void soundnomore(const std::string& filename, const int& time) {
+
+            sf::SoundBuffer buffer;
+
+            if (!std::filesystem::exists(filename)) {
+                std::cout << "Current path: " << std::filesystem::current_path() << std::endl;
+                std::cerr << "Error File " << filename << " not exist" << std::endl;
+                exit(ERROR);
+            } else if (!buffer.loadFromFile(filename)) {
+                std::cerr << "Error while loading " << filename << " exiting" << std::endl;
+
+                exit(ERROR);
+            }
+
+            sf::Sound sound(buffer);
+
+            while (time) {
+                sound.setBuffer(buffer);
+                sound.play();
+                sound.play();
+                sf::sleep(buffer.getDuration());
+
+            }
+        }
     }
 }
 
