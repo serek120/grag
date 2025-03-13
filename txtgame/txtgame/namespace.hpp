@@ -126,29 +126,40 @@ namespace game {
         }
     }
 
-    // play sound  function, needad asf trust me
-    void playsound(const std::string& filename) {
-        
-        sf::SoundBuffer buffer;
+    void criterr(const char* title, const char* message) {
+        std::wstring wTitle = convertToWideString(title);
+        std::wstring wMessage = convertToWideString(message);
+      //  HWND hWnd = GetConsoleWindow();
+        MessageBeep(MB_ICONERROR);
+        MessageBox(NULL, wMessage.c_str(), wTitle.c_str(), MB_OKCANCEL | MB_ICONERROR);
 
-        if (!std::filesystem::exists (filename)) {
-            std::cout << "Current path: " << std::filesystem::current_path() << std::endl;
-            std::cerr << "Error File " << filename << " not exist" << std::endl;
-            exit(ERROR);
-        } else if (!buffer.loadFromFile (filename)) {
-            std::cerr << "Error while loading " << filename << " exiting" << std::endl;
-       
-            exit(ERROR);
-        }
-        
-        sf::Sound sound(buffer);
-        sound.setBuffer(buffer);
-        sound.play();
-
-        sf::sleep(buffer.getDuration());
     }
 
+
+    // ( Namespace game::sound:: ... )
+
     namespace sound {
+
+        void playsound(const std::string& filename) {
+
+            sf::SoundBuffer buffer;
+
+            if (!std::filesystem::exists (filename)) {
+                std::cout << "Current path: " << std::filesystem::current_path() << std::endl;
+                std::cerr << "Error File " << filename << " not exist" << std::endl;
+                exit(ERROR);
+            } else if (!buffer.loadFromFile (filename)) {
+                std::cerr << "Error while loading " << filename << " exiting" << std::endl;
+
+                exit(ERROR);
+            }
+
+            sf::Sound sound(buffer);
+            sound.setBuffer(buffer);
+            sound.play();
+
+            sf::sleep(buffer.getDuration());
+        }
 
         void soundnomore(const std::string& filename, const int& time) {
 

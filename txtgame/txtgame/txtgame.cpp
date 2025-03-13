@@ -6,7 +6,6 @@
 #include <Windows.h>
 #include <shellapi.h>
 
-
 char buffer[256];
 
 bool b_isStarted = false;
@@ -55,13 +54,13 @@ int static characterdesign() {
     
 }
 
-int main() {
-
-    
+int main() {   
 
     game::DelayedPrinter printer(1);
     printer.printWithDelay("Welcome to the game \033[1;32;41m`I still haven't named it`\033[0m, it is a text-based RPG written on the so-called \033[35m`knee`\033[0m");
     printer.printWithDelay("Type \033[1;32;41m`Start`\033[0m with a capital letter to start the game\nor \033[1;32;41m`Exit`\033[0m also with a capital letter to exit the game");
+    
+
     while (true) {
         printf("> :");
 
@@ -78,9 +77,13 @@ int main() {
         } else if (strcmp(buffer, "Exit") == 0) {
             break;
         } else if (strcmp(buffer, "ellen joe") == 0) {
-            game::sequence(3, 400);
+            game::sequence(3, 100);
             game::DelayedPrinter printer(700);
             printer.printWithDelay("You discovered an easter egg.");
+            system("start https://i.imgur.com/LlgUaHi.jpeg");
+            auto criterror = [] () { game::criterr("error", "error"); };
+            std::thread criterrorThread(criterror);
+            criterrorThread.join();
             std::exit(0x000202);
         } else {
             printf("Invalid input. Please type 'Start' or 'Exit'.\n");
