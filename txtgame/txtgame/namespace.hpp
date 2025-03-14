@@ -32,7 +32,7 @@ namespace game {
     private:
         int delay_ms_;
     };
-		// this function will make  a fake loading not needed but i think we will confuse some palyer's
+		// this function will make a fake loading not needed but i think we will confuse some palyer's
     void loading(int czas) {
         const int krok = 200;
         int ilosc_krokow = (czas * 1000) / krok;
@@ -185,7 +185,7 @@ namespace game {
 
             }
         }
-    }
-}
+    } // End of namespace sound
+} // End of namespace game
 
 #endif // GAME_HPP

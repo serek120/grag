@@ -1,0 +1,37 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+bool checkFileExistenceAndValidatePhrase(const std::string& filename, const std::string& expectedPhrase) {
+    std::ifstream file(filename);
+    if (!file) {
+        return false;  // Plik nie istnieje
+    }
+
+    std::string fileContent;
+    std::getline(file, fileContent);  // Odczytanie pierwszej linii pliku (mo¿esz zmieniæ na ca³y plik, jeœli chcesz)
+    file.close();
+
+    return fileContent == expectedPhrase;  // Porównanie fraz
+}
+
+void createFileWithPhrase(const std::string& filename, const std::string& phrase) {
+    std::ofstream file(filename);
+    file << phrase;
+    file.close();
+}
+
+int main() {
+    const std::string filename = "game_phrase.txt";
+    const std::string expectedPhrase = "your_expected_phrase";  // Oczekiwana fraza
+
+    if (!checkFileExistenceAndValidatePhrase(filename, expectedPhrase)) {
+        std::cout << "Plik nie istnieje lub fraza nie pasuje. Tworzê nowy plik..." << std::endl;
+        createFileWithPhrase(filename, expectedPhrase);
+    } else {
+        std::cout << "Fraza pasuje. Przechodzê do nastêpnego etapu..." << std::endl;
+        // Zmieniamy stan gry, np. na inny int
+    }
+
+    return 0;
+}
