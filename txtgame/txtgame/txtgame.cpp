@@ -1,4 +1,4 @@
-﻿ #include <iostream>
+﻿#include <iostream>
 #include <cstdio>
 #include "namespace.hpp"
 #include "klasyitd.cpp"
@@ -8,9 +8,15 @@
 
 char buffer[256];
 
-bool b_isStarted = false;
 bool isThiren = false;
 bool isHuman = false;
+
+//
+
+void static ahhShitHereWeGoAgain() {
+    printf("It seem's that you occuared an error while in game");
+    exit(0xe00);
+}
 
 int static characterdesign2() {
     return 0;
@@ -56,6 +62,15 @@ int static characterdesign() {
 
 int main() {
 
+
+    if (!CheckFileAndContinueToNextPhase("start", "ABCD"))
+        game::CS::CreateStartMEM("start", "ABCD");
+    else if (CheckFileAndContinueToNextPhase("start", "ABCD"))
+        ahhShitHereWeGoAgain();
+        
+    for (int i = 0; i < 10; i++) {
+        game::Thrd::pissingofplayer("hello", "hello");
+    }
     game::showMessageBox("siema", "siema");
 
     game::DelayedPrinter printer(1);

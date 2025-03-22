@@ -3,8 +3,10 @@
 
 #include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <cctype>
 #include <fstream>
+#include <string>
 
 bool static isEmptyOrSpaces(const char* str) {
     while (*str) {
@@ -16,15 +18,17 @@ bool static isEmptyOrSpaces(const char* str) {
     return true;
 }
 
-extern bool b_isStarted;
 
-bool CheckFileAndContinueToNextPhase(const char* Filename, const char ExpectedPhrase) {
+bool static CheckFileAndContinueToNextPhase(const std::string& Filename, const std::string& ExpectedPhrase) {
     std::ifstream file(Filename);
     if (!file) 
         return false; // file doesn't exist
 
     std::string FileContent;
-    std::
+    std::getline(file, FileContent);
+    file.close();
+
+    return FileContent == ExpectedPhrase;
 
 }
 

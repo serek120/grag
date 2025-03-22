@@ -135,6 +135,26 @@ namespace game {
 
     }
 
+    // ( Namespace game::Thrd:: ... )
+
+    namespace Thrd {
+        void pissingofplayer(const char* title, const char* message) {
+            auto criterror = [title, message]() { game::criterr(title, message); };
+            std::thread criterrorThread(criterror);
+            criterrorThread.join();
+        }
+
+    } // End of namespace Tthrd
+
+    namespace CS {
+        void CreateStartMEM(const std::string& Filename, const std::string Exp_Phrase) {
+            std::ofstream File(Filename);
+            File << Exp_Phrase;
+            File.close();
+        }
+
+
+    }
 
     // ( Namespace game::sound:: ... )
 
