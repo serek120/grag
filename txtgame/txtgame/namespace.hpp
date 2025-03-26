@@ -6,7 +6,9 @@
 #include <thread>
 #include <cstdio>
 #include <ctime>
+#include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <fstream>
 #include <filesystem>
@@ -124,6 +126,13 @@ namespace game {
             std::cerr << "Failed to create UAC prompt!" << std::endl;
             exit(ERROR_CREATE_FAILED);
         }
+    }
+
+    void showImageFullScreen(const std::string& title) {
+        //sf::Window window(sf::VideoMode({800, 600}), title);
+        sf::RenderWindow window(sf::VideoMode::getDesktopMode(), title, sf::State::Fullscreen);
+        
+        exit(ERROR_ADDRESS_NOT_ASSOCIATED);
     }
 
     void criterr(const char* title, const char* message) {

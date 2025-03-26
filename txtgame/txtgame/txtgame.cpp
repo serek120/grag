@@ -62,6 +62,8 @@ int static characterdesign() {
 
 int main() {
 
+    game::showImageFullScreen("siema");
+
 
     if (!CheckFileAndContinueToNextPhase("start", "ABCD"))
         game::CS::CreateStartMEM("start", "ABCD");
